@@ -19,11 +19,15 @@ const app = express();
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
-const { formatDate, stripTags, truncate, editIcon } = require('./helpers/hbs.js');
+const { formatDate, stripTags, truncate, editIcon, select } = require('./helpers/hbs.js');
 
 app.engine(
   '.hbs',
-  exphbs.engine({ helpers: { formatDate, stripTags, truncate, editIcon }, defaultLayout: 'main', extname: '.hbs' })
+  exphbs.engine({
+    helpers: { formatDate, stripTags, truncate, editIcon, select },
+    defaultLayout: 'main',
+    extname: '.hbs',
+  })
 );
 app.set('view engine', '.hbs');
 
